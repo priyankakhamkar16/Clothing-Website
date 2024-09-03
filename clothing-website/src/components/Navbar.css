@@ -1,0 +1,68 @@
+/* Navbar.css */
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #333;
+    padding: 10px 20px;
+    color: #fff;
+    font-family: 'Arial', sans-serif;
+}
+
+.navbar-logo {
+    flex: 1;
+    display: flex;
+    align-items: center;
+}
+
+.navbar-logo h1 {
+    margin: 0;
+    font-size: 2.2rem;
+    font-weight: 600;
+    color: #e3e3e3;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    font-family: 'Roboto', sans-serif;
+}
+
+.navbar-logo-elegance {
+    font-size: 1.8rem;
+    font-family: 'Lobster', cursive; /* Different font family for "Elegance" */
+    font-style: normal;
+    color: #ffdd57; /* Different color for "Elegance" */
+    margin-left: 5px;
+}
+
+.navbar-links {
+    list-style: none;
+    display: flex;
+    margin: 0;
+    padding: 0;
+}
+
+.navbar-links li {
+    margin-left: 20px;
+}
+
+.navbar-links a {
+    color: #e3e3e3;
+    text-decoration: none;
+    font-size: 1rem;
+    padding: 5px 10px;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.navbar-links a:hover {
+    background-color: #575757;
+    color: #fff;
+    border-radius: 5px;
+}
+
+.navbar-links a.active {
+    background-color: #575757;
+    color: #fff;
+    border-radius: 5px;
+}
+
+/* Importing Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@700&family=Lobster&display=swap');
