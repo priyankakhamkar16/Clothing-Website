@@ -1,7 +1,14 @@
 import React from 'react';
+import { Navigate } from 'react-router-dom';
 import './Cart.css';
 
 const Cart = ({ cartItems, onRemoveFromCart, onOrderNow }) => {
+  const isAuthenticated = !!localStorage.getItem('token');
+
+  if (!isAuthenticated) {
+    return <Navigate to="/login" />;
+  }
+
   return (
     <div className="cart-page">
       <h1>Your Cart</h1>

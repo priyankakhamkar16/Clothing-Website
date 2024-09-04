@@ -75,7 +75,7 @@
 }
 
 .product-options button {
-    background-color:#333;
+    background-color: #333;
     color: #fff;
     border: none;
     padding: 8px 15px;
@@ -83,45 +83,10 @@
     transition: background-color 0.3s ease;
     font-size: 0.9rem;
     border-radius: 5px;
+    margin: 0 5px; /* Added margin to ensure space between buttons */
 }
 
 .product-options button:hover {
     background-color: rgb(245, 87, 87);
 }
-/* Existing styles remain unchanged */
 
-/* Popup notification */
-.popup {
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    background-color: #333;
-    color: #fff;
-    padding: 15px 30px;
-    border-radius: 5px;
-    font-size: 1.2rem;
-    z-index: 1000;
-    opacity: 0;
-    animation: fadeInOut 3s ease forwards;
-}
-
-/* Animation for popup */
-@keyframes fadeInOut {
-    0% {
-        opacity: 0;
-        transform: translate(-50%, -60%);
-    }
-    10% {
-        opacity: 1;
-        transform: translate(-50%, -50%);
-    }
-    90% {
-        opacity: 1;
-        transform: translate(-50%, -50%);
-    }
-    100% {
-        opacity: 0;
-        transform: translate(-50%, -40%);
-    }
-}

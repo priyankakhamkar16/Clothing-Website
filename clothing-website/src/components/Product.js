@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import './Product.css';
+import { useAuth } from './AuthContext'; // Import useAuth
 
 import dressImg from '../assets/images/dress.avif';
 import skirtImg from '../assets/images/skirt.avif';
@@ -15,8 +16,8 @@ import bomberJacketImg from '../assets/images/bomber-jacket.jpeg';
 import sareeImg from '../assets/images/saree.webp';
 
 const Products = ({ onAddToCart, onAddToWishlist }) => {
+  const { isAuthenticated } = useAuth(); // Use authentication context
   const [selectedCategory, setSelectedCategory] = useState('All');
-  const [popupMessage, setPopupMessage] = useState(''); // Popup message state
 
   const categories = ['All', 'Dresses', 'Skirts', 'Tops', 'Jeans', 'Ethnic Wear'];
 
@@ -40,18 +41,21 @@ const Products = ({ onAddToCart, onAddToWishlist }) => {
     : products.filter(product => product.category === selectedCategory);
 
   const handleAddToCart = (product) => {
-    onAddToCart(product); // Add to cart
-    showPopup(`${product.name} has been added to your cart!`);
+    if (isAuthenticated) {
+      onAddToCart(product);
+      alert(`${product.name} has been added to your cart!`);
+    } else {
+      alert('Please log in to add items to the cart.');
+    }
   };
 
   const handleAddToWishlist = (product) => {
-    onAddToWishlist(product); // Add to wishlist
-    showPopup(`${product.name} has been added to your wishlist!`);
-  };
-
-  const showPopup = (message) => {
-    setPopupMessage(message);
-    setTimeout(() => setPopupMessage(''), 3000); // Hide popup after 3 seconds
+    if (isAuthenticated) {
+      onAddToWishlist(product);
+      alert(`${product.name} has been added to your wishlist!`);
+    } else {
+      alert('Please log in to add items to your wishlist.');
+    }
   };
 
   return (
@@ -69,9 +73,6 @@ const Products = ({ onAddToCart, onAddToWishlist }) => {
         ))}
       </div>
 
-      {/* Popup notification */}
-      {popupMessage && <div className="popup">{popupMessage}</div>}
-
       <div className="products-list">
         {filteredProducts.map(product => (
           <div key={product.id} className="product-card">
@@ -79,7 +80,7 @@ const Products = ({ onAddToCart, onAddToWishlist }) => {
             <h3>{product.name}</h3>
             <p>{product.price}</p>
             <div className="product-options">
-              <button onClick={() => handleAddToCart(product)}>Add to Cart</button>
+              <button onClick={() => handleAddToCart(product)}>Cart</button>
               <button onClick={() => handleAddToWishlist(product)}>Wishlist</button>
             </div>
           </div>
