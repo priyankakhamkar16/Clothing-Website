@@ -16,7 +16,7 @@ function ContactUs() {
     };
 
     try {
-      const response = await fetch('https://clothing-website-3nju.vercel.app/contact', {
+      const response = await fetch('https://clothing-website-3nju.vercel.app/api/contact', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
