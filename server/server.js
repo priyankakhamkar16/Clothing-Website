@@ -11,7 +11,10 @@ connectDB();
 
 // Configure CORS to allow requests from your Vercel frontend
 const corsOptions = {
-  origin: 'https://clothing-website-gk7r.vercel.app', // Your frontend URL
+  origin: [
+    'https://clothing-website-3nju.vercel.app', // Your frontend URL
+    'https://clothing-website-32qm.vercel.app'  // Add any other frontend URLs as needed
+  ],
   methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
   allowedHeaders: ['Content-Type', 'Authorization']
 };
