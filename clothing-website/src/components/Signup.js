@@ -8,7 +8,7 @@ function Signup() {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
-  const navigate = useNavigate(); // Hook for navigation
+  const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -33,7 +33,7 @@ function Signup() {
 
       if (response.ok) {
         console.log('Sign up successful:', data);
-        navigate('/login'); // Redirect to login page after successful signup
+        navigate('/login');
       } else {
         alert(data.message);
       }
