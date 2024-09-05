@@ -12,7 +12,7 @@ function ContactUs() {
     const contactInfo = { name, email, message };
 
     try {
-      const response = await fetch('https://clothing-website-gw7l.vercel.app/api/contact', {
+      const response = await fetch('https://clothing-website-3nju.vercel.app/api/contact', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
