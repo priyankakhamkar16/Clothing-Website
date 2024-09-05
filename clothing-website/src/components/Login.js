@@ -1,13 +1,13 @@
 import React, { useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
-import { useAuth } from '../components/AuthContext'; // Import useAuth hook
+import { useAuth } from '../components/AuthContext';
 import './Login.css';
 
 function Login() {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const navigate = useNavigate();
-  const { login } = useAuth(); // Use the login function from context
+  const { login } = useAuth();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -23,17 +23,18 @@ function Login() {
         body: JSON.stringify(loginData),
       });
 
-      const data = await response.json();
-
       if (response.ok) {
+        const data = await response.json();
         console.log('Login successful:', data);
-        login(data.token); // Update auth context and store token
-        navigate('/'); // Redirect to home page after successful login
+        login(data.token);
+        navigate('/');
       } else {
-        alert(data.message);
+        const errorData = await response.json();
+        alert(errorData.message);
       }
     } catch (err) {
       console.error('Login error:', err);
+      alert('An error occurred during login.');
     }
   };
 
@@ -62,7 +63,9 @@ function Login() {
         <button type="submit">Login</button>
       </form>
       <div className="signup-link">
-        <p>Don't have an account? <Link to="/signup">Sign up here</Link></p>
+        <p>
+          Don't have an account? <Link to="/signup">Sign up here</Link>
+        </p>
       </div>
     </div>
   );
