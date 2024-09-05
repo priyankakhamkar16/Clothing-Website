@@ -1,13 +1,13 @@
 import React, { useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
-import { useAuth } from '../components/AuthContext';
+import { useAuth } from '../components/AuthContext'; // Import useAuth hook
 import './Login.css';
 
 function Login() {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const navigate = useNavigate();
-  const { login } = useAuth();
+  const { login } = useAuth(); // Use the login function from context
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -15,7 +15,7 @@ function Login() {
     const loginData = { username, password };
 
     try {
-      const response = await fetch('https://clothing-website-3nju.vercel.app/api/auth/login', {
+      const response = await fetch('https://clothing-website-gw7l.vercel.app/api/auth/login', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -27,8 +27,8 @@ function Login() {
 
       if (response.ok) {
         console.log('Login successful:', data);
-        login(data.token);
-        navigate('/');
+        login(data.token); // Update auth context and store token
+        navigate('/'); // Redirect to home page after successful login
       } else {
         alert(data.message);
       }
