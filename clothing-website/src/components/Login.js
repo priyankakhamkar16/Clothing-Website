@@ -15,7 +15,7 @@ function Login() {
     const loginData = { username, password };
 
     try {
-      const response = await fetch('https://clothing-website-gw7l.vercel.app/api/auth/login', {
+      const response = await fetch('https://clothing-website-3nju.vercel.app/api/auth/login', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
