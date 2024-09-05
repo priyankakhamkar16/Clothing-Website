@@ -21,7 +21,7 @@ function Signup() {
     const signupData = { name, email, username, password };
 
     try {
-      const response = await fetch('https://clothing-website-gw7l.vercel.app/api/auth/register', {
+      const response = await fetch('https://clothing-website-3nju.vercel.app/api/auth/register', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
