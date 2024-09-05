@@ -21,7 +21,7 @@ function Signup() {
     const signupData = { name, email, username, password };
 
     try {
-      const response = await fetch('https://clothing-website-3nju.vercel.app/api/auth/register', {
+      const response = await fetch('https://clothing-website-gw7l.vercel.app/api/auth/register', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -29,16 +29,17 @@ function Signup() {
         body: JSON.stringify(signupData),
       });
 
-      const data = await response.json();
-
       if (response.ok) {
+        const data = await response.json();
         console.log('Sign up successful:', data);
         navigate('/login');
       } else {
-        alert(data.message);
+        const errorData = await response.json();
+        alert(errorData.message);
       }
     } catch (err) {
       console.error('Sign up error:', err);
+      alert('An error occurred during sign up.');
     }
   };
 
