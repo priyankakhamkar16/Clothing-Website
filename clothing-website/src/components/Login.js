@@ -1,13 +1,13 @@
 import React, { useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
-import { useAuth } from '../components/AuthContext'; // Import useAuth hook
+import { useAuth } from '../components/AuthContext';
 import './Login.css';
 
 function Login() {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const navigate = useNavigate();
-  const { login } = useAuth(); // Use the login function from context
+  const { login } = useAuth();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -27,8 +27,8 @@ function Login() {
 
       if (response.ok) {
         console.log('Login successful:', data);
-        login(data.token); // Update auth context and store token
-        navigate('/'); // Redirect to home page after successful login
+        login(data.token);
+        navigate('/');
       } else {
         alert(data.message);
       }
