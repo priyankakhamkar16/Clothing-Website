@@ -9,14 +9,10 @@ function ContactUs() {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    const contactInfo = {
-      name,
-      email,
-      message,
-    };
+    const contactInfo = { name, email, message };
 
     try {
-      const response = await fetch('https://clothing-website-3nju.vercel.app/api/contact', {
+      const response = await fetch('https://clothing-website-gw7l.vercel.app/api/contact', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -30,44 +26,42 @@ function ContactUs() {
         setEmail('');
         setMessage('');
       } else {
-        alert('Failed to send message');
+        const errorData = await response.json();
+        alert(`Failed to send message: ${errorData.message}`);
       }
     } catch (err) {
       console.error('Error:', err);
-      alert('Failed to send message');
+      alert('Failed to send message.');
     }
   };
 
   return (
-    <div className="contact-page">
-      <h1>Contact Us</h1>
+    <div className="contactus-container">
+      <h2>Contact Us</h2>
       <form onSubmit={handleSubmit}>
-        <div className="form-group">
-          <label>Name</label>
-          <input
-            type="text"
-            value={name}
-            onChange={(e) => setName(e.target.value)}
-            required
-          />
-        </div>
-        <div className="form-group">
-          <label>Email</label>
-          <input
-            type="email"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            required
-          />
-        </div>
-        <div className="form-group">
-          <label>Message</label>
-          <textarea
-            value={message}
-            onChange={(e) => setMessage(e.target.value)}
-            required
-          ></textarea>
-        </div>
+        <label>Name:</label>
+        <input
+          type="text"
+          placeholder="Your Name"
+          value={name}
+          onChange={(e) => setName(e.target.value)}
+          required
+        />
+        <label>Email:</label>
+        <input
+          type="email"
+          placeholder="Your Email"
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
+          required
+        />
+        <label>Message:</label>
+        <textarea
+          placeholder="Your Message"
+          value={message}
+          onChange={(e) => setMessage(e.target.value)}
+          required
+        />
         <button type="submit">Send</button>
       </form>
     </div>
