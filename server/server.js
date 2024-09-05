@@ -11,24 +11,26 @@ connectDB();
 
 // Configure CORS to allow requests from your Vercel frontend
 const corsOptions = {
-  origin: [
-    'https://clothing-website-3nju.vercel.app', // Backend URL
-    'https://clothing-website-32qm.vercel.app'  // Frontend URL
-  ],
+  origin: 'https://clothing-website-32qm.vercel.app', // Your frontend URL
   methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
   allowedHeaders: ['Content-Type', 'Authorization'],
-  credentials: true // If you need to send cookies with requests
+  credentials: true, // Include credentials if needed
 };
 
 // Init Middleware
 app.use(express.json());
-app.use(cors(corsOptions)); // Apply CORS configuration
+
+// Apply CORS configuration to all routes
+app.use(cors(corsOptions));
+
+// Handle preflight requests
+app.options('*', cors(corsOptions));
 
 // Define Routes
-app.use('/api/auth', require('./routes/authRoutes'));  // Auth routes
-app.use('/api/contact', require('./routes/contactRoutes'));  // Contact routes
+app.use('/api/auth', require('./routes/authRoutes'));
+app.use('/api/contact', require('./routes/contactRoutes')); // Include contact routes
 
-// Root URL response
+// Root endpoint for testing
 app.get('/', (req, res) => {
   res.send('API is running...');
 });
